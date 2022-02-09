@@ -19,8 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav justify-content-between">
             <a class="nav-item nav-link" href="/">Home</a>
+            {{#unless logged_in}}
             <a class="nav-item nav-link" href="/login">Login</a>
-            <a class="nav-item nav-link" href="/createAcc">Create Account</a>
+            <a class="nav-item nav-link" href="/signup">Create Account</a>
+            {{/unless}}
+            {{#if loggeg_in}}
+            <a class="nav-item nav-link" href="/login">Login</a>
+            {{/if}}
           </div>
         </div>
       </nav>
