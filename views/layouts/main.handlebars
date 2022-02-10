@@ -23,8 +23,9 @@
             <a class="nav-item nav-link" href="/login">Login</a>
             <a class="nav-item nav-link" href="/signup">Create Account</a>
             {{/unless}}
-            {{#if loggeg_in}}
-            <a class="nav-item nav-link" href="/login">Login</a>
+            {{#if logged_in}}
+            <a class="nav-item nav-link" href="/dashboard">My Dashboard</a>
+            <a class="nav-item nav-link" href="/api/user/login">Logout</a>
             {{/if}}
           </div>
         </div>

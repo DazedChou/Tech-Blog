@@ -1,15 +1,16 @@
 const signupFormHandler = async (event) => {
     event.preventDefault();
 
-    const username = document.querySelector('#username-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-    const email = document.querySelector('#email-login').value.trim();
+    const username = document.querySelector('#username-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
   
     var newUser = {
         username: username,
         password: password,
         email: email,
     }
+    console.log('new user: ',newUser);
 
     if (username && email && password) {
   
@@ -17,11 +18,13 @@ const signupFormHandler = async (event) => {
         method: 'POST',
         body: JSON.stringify({ newUser }),
         headers: { 'Content-Type': 'application/json' },
-      });
+      })
+      .then(response => response.json());
   
       if (response.ok) {
         document.location.replace('/');
       } else {
+        console.log(response);
         alert('Failed to sign up');
       }
     }
