@@ -1,12 +1,7 @@
 <div class="container ">
-    <div class="row d-flex flex-row justify-content-center w-75">
-        <div class="col">
-            {{#each posts as |post|}}
-            {{> post-details post}}
-            {{/each}}
-        </div>
-
-        <div class="col">
+    <div class="row d-flex flex-row justify-content-center w-100">
+        
+        <div class="col-6">
             <h1>Create a Post</h1>
             <form class="form post-form mx-3" style="width:fit-content">
                 <div class="form-group">
@@ -22,6 +17,13 @@
                 </div>
             </form>
         </div>
+
+        <div class="col-6">
+            {{#each posts as |post|}}
+            {{> post-details post}}
+            {{/each}}
+        </div>
+        
     </div>
 </div>
 

@@ -4,13 +4,6 @@ const signupFormHandler = async (event) => {
     const username = document.querySelector('#username-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
-  
-    var newUser = {
-        username: username,
-        password: password,
-        email: email,
-    }
-    console.log('new user: ',newUser);
 
     if (username && email && password) {
   

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -40,8 +40,24 @@ router.get('/dashboard', withAuth, async (req, res) => {
         post.get({ plain: true })
     );
     res.render('dashboard', {
-        user_id: req.session.user_id, posts
+        user_id: req.session.user_id, posts, logged_in: req.session.logged_in
     })
+});
+
+router.get('/post/:id', withAuth, async (req, res) => {
+    const postData = await Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [{model: User},{ model: Comment, include: [User]}]
+    });
+
+    const post = postData.get({ plain: true});
+    console.log("post: ", post);
+    res.render('comment', {
+        ...post, logged_in: req.session.logged_in 
+    })
+
 })
 
 module.exports = router;

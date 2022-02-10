@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../../models')
+const { User, Post, Comment } = require('../../models')
 
 router.post('/signup', async (req, res) => {
   const userData = await User.create({
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+      document.location.reload();
     });
   } else {
     res.status(404).end();
@@ -62,7 +62,7 @@ router.post('/post', async (req, res) => {
   try{
     const newPost = Post.create({
       title: req.body.title,
-      content: req.body.title,
+      content: req.body.content,
       user_id: req.session.user_id,
     });
     
@@ -72,6 +72,23 @@ router.post('/post', async (req, res) => {
     res.status(500).json(err);
   }
   
+});
+
+router.post('/comment/:id', async (req, res) => {
+  try{
+    const newComment = await Comment.create({
+      content: req.body.content,
+      user_id: req.session.user_id,
+      post_id: req.params.id,
+
+    });
+    console.log(newComment);
+    
+    res.json(newComment);
+  }catch(err){
+    console.log(err);
+    res.status(500).json(err);
+  }
 })
 
 module.exports = router;
