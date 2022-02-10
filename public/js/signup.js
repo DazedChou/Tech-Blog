@@ -16,11 +16,10 @@ const signupFormHandler = async (event) => {
   
       const response = await fetch('/api/users/signup', {
         method: 'POST',
-        body: JSON.stringify({ newUser }),
+        body: JSON.stringify({ username, password, email }),
         headers: { 'Content-Type': 'application/json' },
       })
-      .then(response => response.json());
-  
+
       if (response.ok) {
         document.location.replace('/');
       } else {

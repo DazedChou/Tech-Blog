@@ -1,0 +1,28 @@
+<div class="container ">
+    <div class="row d-flex flex-row justify-content-center w-75">
+        <div class="col">
+            {{#each posts as |post|}}
+            {{> post-details post}}
+            {{/each}}
+        </div>
+
+        <div class="col">
+            <h1>Create a Post</h1>
+            <form class="form post-form mx-3" style="width:fit-content">
+                <div class="form-group">
+                    <label for="post-title">Title:</label>
+                    <input class="form-input" type="text" id="post-title" />
+                </div>
+                <div class="form-group">
+                    <label for="post-content">Body:</label>
+                    <input class="form-input" type="text" id="post-content" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/post.js"></script>
