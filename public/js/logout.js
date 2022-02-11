@@ -1,3 +1,5 @@
+
+
 const logout = async () => {
 
   const response = await fetch('/api/users/logout', {
@@ -7,7 +9,7 @@ const logout = async () => {
 
   if (response.ok) {
 
-    document.location.replace('/login');
+    document.location.reload();
   } else {
     alert('Failed to log out');
   }

@@ -31,17 +31,21 @@ router.get('/login', async (req, res) => {
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
-    const postData = await Post.findAll({
-        where: { id: req.session.user_id },
-        include: { model: User }
-    });
+    try{
+        const postData = await Post.findAll({
+            where: { user_id: req.session.user_id },
+            include: { model: User }
+        });
 
-    const posts = postData.map((post) =>
-        post.get({ plain: true })
-    );
-    res.render('dashboard', {
-        user_id: req.session.user_id, posts, logged_in: req.session.logged_in
-    })
+        const posts = postData.map((post) => post.get({ plain: true }));
+
+        res.render('dashboard', {
+            user_id: req.session.user_id, posts, logged_in: req.session.logged_in
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 router.get('/post/:id', withAuth, async (req, res) => {

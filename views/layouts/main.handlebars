@@ -13,32 +13,33 @@
       <div class="jumbotron my-3 mx-3">
         <h1>Tech Blog</h1>
         <nav class="navbar navbar-expand-lg navbar-light">
-        
+
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav justify-content-between">
-            <a class="nav-item nav-link" href="/">Home</a>
-            {{#unless logged_in}}
-            <a class="nav-item nav-link" href="/login">Login</a>
-            <a class="nav-item nav-link" href="/signup">Create Account</a>
-            {{/unless}}
-            {{#if logged_in}}
-            <a class="nav-item nav-link" href="/dashboard">My Dashboard</a>
-            <a class="nav-item nav-link" href="/api/user/login">Logout</a>
-            {{/if}}
+
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav justify-content-between">
+              <a class="nav-item nav-link" href="/">Home</a>
+              {{#unless logged_in}}
+                <a class="nav-item nav-link" href="/login">Login</a>
+                <a class="nav-item nav-link" href="/signup">Create Account</a>
+              {{/unless}}
+              {{#if logged_in}}
+                <a class="nav-item nav-link" href="/dashboard">My Dashboard</a>
+                <button class="no-button" id="logout">Logout</button>
+              {{/if}}
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
       </div>
 
-      
       <div>
         {{{body}}}
       </div>
 
     </main>
-
+    {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     ></script>
