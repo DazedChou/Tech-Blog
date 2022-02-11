@@ -10,7 +10,7 @@ router.post('/signup', async (req, res) => {
   req.session.save(() => {
     req.session.user_id = userData.id;
     req.session.logged_in = true;
-    
+
     res.json({ user: userData, message: 'You are now logged in!' });
   });
 
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
+
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
@@ -59,23 +59,41 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/post', async (req, res) => {
-  try{
+  try {
     const newPost = Post.create({
       title: req.body.title,
       content: req.body.content,
       user_id: req.session.user_id,
     });
-    
+
     res.json(newPost);
-  }catch(err){
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-  
+
 });
 
+router.put('/post/:id', async (req, res) => {
+  const editPost = await Post.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  });
+  res.json(editPost);
+});
+
+// router.post('/post/:id', async (req, res) => {
+//   const editPost = await Post.findOne({
+//     where: {
+//       id: req.params.id
+//     },
+
+//   }),
+// })
+
 router.post('/comment/:id', async (req, res) => {
-  try{
+  try {
     const newComment = await Comment.create({
       content: req.body.content,
       user_id: req.session.user_id,
@@ -83,9 +101,9 @@ router.post('/comment/:id', async (req, res) => {
 
     });
     console.log(newComment);
-    
+
     res.json(newComment);
-  }catch(err){
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }

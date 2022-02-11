@@ -1,8 +1,9 @@
 <div class="d-flex card justify-content-center mx-3" style="width: 70%;">
   <div class="card-body">
-    <h5 class="card-title">title: {{title}}</h5>
+    <h5 class="card-title">{{title}}</h5>
     <p class="card-text">{{content}}</p>
     <a href="/post/{{id}}" class="btn btn-primary">Comment Here</a>
-    <a href="/post/{{id}}" class="btn btn-primary" id="edit" data-post="{{id}}">Edit Post</a>
+    <a href="/edit/post/{{id}}" class="btn btn-primary" id="editPost" data-post="{{id}}">Edit Post</a>
+    <button class="btn btn-primary" id="deletePost">Delete Post</button>
   </div>
 </div>

@@ -1,15 +1,17 @@
 const editPostHandler = async (event) => {
     event.preventDefault();
   
-    const post = document.querySelectorAll('[data-post]');
+    const title = document.querySelector('#post-title').value.trim();
+    const content = document.querySelector('#post-content').value.trim();
 
-    console.log(post);
+    const href = window.location.href.split('/');
+    const post_id = href[href.length-1];
   
-    if (username && password) {
+    if (title && content) {
   
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
+      const response = await fetch(`/api/users/post/${post_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ title, content }),
         headers: { 'Content-Type': 'application/json' },
       });
   
@@ -22,6 +24,6 @@ const editPostHandler = async (event) => {
   };
   
   document
-    .querySelector('#edit')
+    .querySelector('.edit-form')
     .addEventListener('submit', editPostHandler);
   

@@ -62,6 +62,22 @@ router.get('/post/:id', withAuth, async (req, res) => {
         ...post, logged_in: req.session.logged_in 
     })
 
+});
+
+router.get('/edit/post/:id', withAuth, async (req, res) => {
+    const postData = await Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [{model: User},{ model: Comment, include: [User]}]
+    });
+
+    const post = postData.get({ plain: true});
+    console.log("post: ", post);
+    res.render('editPost', {
+        ...post, logged_in: req.session.logged_in 
+    })
+
 })
 
 module.exports = router;
