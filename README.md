@@ -1,11 +1,14 @@
 # Tech-Blog
-# Project Title
 
-One paragraph of project description goes here.
+This site is a blog where users can create posts and start discussions with other blog users. When the user is logged in, the user will have the ability to create a new post, edit the post, comment, and even delete the post. 
 
 ## Getting Started
 
 This project runs directly in the browser with no intial installation.
+
+### Demo
+
+[![Watch the video]()](https://watch.screencastify.com/v/7mhPrnWqIP7qTLCPLKgS)
 
 ## Built With
 
