@@ -83,14 +83,6 @@ router.put('/post/:id', async (req, res) => {
   res.json(editPost);
 });
 
-// router.post('/post/:id', async (req, res) => {
-//   const editPost = await Post.findOne({
-//     where: {
-//       id: req.params.id
-//     },
-
-//   }),
-// })
 
 router.post('/comment/:id', async (req, res) => {
   try {
