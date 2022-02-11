@@ -83,6 +83,15 @@ router.put('/post/:id', async (req, res) => {
   res.json(editPost);
 });
 
+router.delete('/post/:id', async (req, res) => {
+  const deletePost = await Post.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
+  res.status(200).json(deletePost);
+})
+
 
 router.post('/comment/:id', async (req, res) => {
   try {
