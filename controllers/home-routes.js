@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { Post, User, Comment } = require('../models/index');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
     const posts = postData.map((post) =>
         post.get({ plain: true })
     )
-    console.log(posts);
     res.render('homepage', {
         posts,
         logged_in: req.session.logged_in,
